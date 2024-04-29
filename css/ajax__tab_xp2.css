@@ -1,0 +1,89 @@
+/* xp theme */
+.ajax__tab_xp2
+{
+}
+
+.ajax__tab_xp2.ajax__tab_header
+{
+		border-bottom-color: transparent;
+	font-family: verdana,tahoma,helvetica;
+	font-size: 11px;
+	font-weight: normal; /* border-bottom: 1px solid #ddd; background:url(../images/tab-line.gif) repeat-x bottom;*/
+}
+
+.ajax__tab_xp2 .ajax__tab_outer
+{
+	/*padding-right:4px;*/ /* background:url(../images/tab-right.gif) no-repeat right; */
+	height: 21px;
+}
+
+.ajax__tab_xp2 .ajax__tab_inner
+{
+	padding-left: 3px; /* background:url(../images/tab-left.gif) no-repeat; */
+}
+
+.ajax__tab_xp2 .ajax__tab_tab
+{
+	color: #4d7496;
+	height: 13px;
+	padding: 4px;
+	margin: 0; /* background:url(../images/tab.gif) repeat-x; */
+}
+
+.ajax__tab_xp2 .ajax__tab_hover .ajax__tab_outer
+{
+	/* background:url(../images/tab-right.gif) no-repeat right; */
+}
+
+.ajax__tab_xp2 .ajax__tab_hover .ajax__tab_inner
+{
+	/* background:url(../images/tab-left.gif) no-repeat; */
+}
+
+.ajax__tab_xp2 .ajax__tab_hover .ajax__tab_tab
+{
+	/* background:url(../images/tab.gif) repeat-x; */
+}
+
+.ajax__tab_xp2 .ajax__tab_active .ajax__tab_outer
+{
+	/*  background:url(../images/tab-active-right.gif) no-repeat right;*/
+}
+
+.ajax__tab_xp2 .ajax__tab_active .ajax__tab_inner
+{
+	/*background:url(../images/tab-active-left.gif) no-repeat; */
+}
+
+.ajax__tab_xp2 .ajax__tab_active .ajax__tab_tab
+
+{
+	border-bottom-color:inherit;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-left-width: 1px;
+	border-top-color: #ddd;
+	border-right-color: #ddd;
+	border-left-color: #ddd;
+	color: #555;
+	cursor: default;
+	background-color: #fff; 
+	/*border-bottom-color: transparent;*/	
+	border-top: 3px solid #4d7496;/*border: 1px solid #ddd;*/ /*border-bottom-color: transparent;* 	 /* background:url(../images/tab-active.gif) repeat-x; */
+}
+
+.ajax__tab_xp2 .ajax__tab_body
+{
+	font-family: verdana,tahoma,helvetica;
+	border-top: 0;
+	padding: 10px;
+	border: 1px solid #ddd;
+	background-color: white;
+	/*border-bottom-color: transparent;*/
+color: #4d7496;
+
+}
+

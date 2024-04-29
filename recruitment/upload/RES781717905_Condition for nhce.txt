@@ -1,0 +1,7 @@
+date of birth < present date
+date of birth < date of join
+Date Of join < present date
+Passport issued date < presesnt date
+passport expiry date > passport issue date
+REsign date > Joinin date
+REsign date < present date

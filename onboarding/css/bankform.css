@@ -1,0 +1,134 @@
+﻿
+#page_11 {
+    position: relative;
+    overflow: hidden;
+    margin: 45px 0px 187px 0px;
+    padding: 0px;
+    border: none;
+    width: 750px;
+}
+
+
+
+
+.dclr1 {
+    clear: both;
+    float: none;
+    height: 1px;
+    margin: 0px;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.ft01 {
+    font: 23px 'Cambria';
+    color: #808080;
+    line-height: 27px;
+}
+
+.ft111 {
+    font: bold 16px 'Cambria';
+    line-height: 19px;
+}
+
+.ft21 {
+    font: 16px 'Cambria';
+    line-height: 55px;
+}
+
+.ft31 {
+    font: 16px 'Cambria';
+    line-height: 19px;
+}
+
+.ft41 {
+    font: bold 16px 'Cambria';
+    line-height: 11px;
+}
+
+.ft51 {
+    font: 14px 'Cambria';
+    line-height: 16px;
+}
+
+.p01 {
+    text-align: center;
+    padding-left: 25%;
+    margin-top: 23px;
+    margin-bottom: 0px;
+}
+
+
+
+.p211 {
+    text-align: left;
+    padding-left: 125px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+
+
+
+
+.p51 {
+    text-align: right;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    white-space: nowrap;
+}
+
+.p61 {
+    text-align: right;
+    padding-right: 124px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.p71 {
+    text-align: left;
+    padding-left: 531px;
+    margin-top: 3px;
+    margin-bottom: 0px;
+}
+
+.td01 {
+    padding: 0px;
+    margin: 0px;
+    width: 149px;
+    vertical-align: bottom;
+}
+
+
+.tr01 {
+    height: 35px;
+}
+
+
+.tr21 {
+    height: 66px;
+}
+
+.tr31 {
+    height: 11px;
+}
+
+
+
+.tr51 {
+    height: 57px;
+}
+
+.tr61 {
+    height: 39px;
+}
+
+.tr71 {
+    height: 91px;
+}
+
+.t01 {
+    /*width: 185px;*/
+    margin-left: 125px;
+    font: 16px 'Cambria';
+}

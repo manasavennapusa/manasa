@@ -1,0 +1,245 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="employeemaster.master.cs" Inherits="Employee_EmployeeMaster" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head runat="server">
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>SmartDrive Labs Technologies India Pvt. Ltd. - Employee Information</title>
+<style type="text/css" media="all">
+@import "css/blue1.css";
+@import "css/example.css";
+</style>
+<script type="text/javascript" src="js/tabber.js"></script>
+<script type="text/javascript">
+document.write('<style type="text/css">.tabber{display:none;}<\/style>');
+</script>
+<link href="../css/blue1.css" rel="stylesheet" /></head>
+<body>
+    <form id="form1" runat="server">
+   <div class="header">
+<table width="1000" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top" class="bg"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0">
+<tr>
+<td valign="top" class="wht-clr"><!--......................HEADER..............................-->
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+<tr>
+  <td height="5" colspan="2"></td>
+</tr>
+
+<tr>
+<td width="65%"><img src="upload/logo/insight-logo1.gif" width="150" height="50" alt=""/></td>
+
+<td width="35%" align="right">
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        
+        <tr>
+            <td width="91%" height="20" align="right" valign="bottom"><strong>Welcome</strong> <asp:Label ID="lblname" runat="server"></asp:Label></td>
+            <td width="9%" align="center" valign="bottom"><img src="images/welcome-icon.jpg" width="14" height="16" alt="" /></td>
+        </tr>
+        <tr>
+            <td align="right" valign="bottom"><asp:LinkButton ID="lnkhome" CssClass="link01" runat="server" OnClick="lnkbtnHome_Click">Home</asp:LinkButton> <span class="black1-new" >|</span> <asp:LinkButton ID="lnkbtnlogout" CssClass="link01" runat="server" OnClick="lnkbtnlogout_Click">Logout</asp:LinkButton></td>
+            <td align="center" valign="bottom"><img src="images/log-out-icons.jpg" width="10" height="10" alt="" /></td>
+        </tr>
+        
+        <tr><td colspan="2" height="23"></td></tr>
+    
+    </table>
+
+</td>
+</tr>
+</table>
+<!--......................END HEADER..............................--></td>
+</tr>
+<tr>
+<td height="20" valign="top" class="blue-bg">&nbsp;</td>
+</tr>
+<tr>
+<td valign="top" class="light-blue"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="12%" valign="top" class="blue-brdr-new"><!--......................LEFT PART.................-->
+<table width="140" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td style="height:7px" ></td>
+</tr>
+<tr>
+<td valign="top" align="center"><asp:Image ID="MyImg" runat="server" Height="84px" Width="84px"/></td>
+</tr>
+<tr>
+<td style="height:10px" ></td>
+</tr>
+<tr>
+<td width="91%" height="20" align="center" valign="middle"><asp:Label ID="lblnm" runat="server"></asp:Label></td>
+</tr>
+<tr>
+<td height="5"></td>
+</tr>
+<tr>
+<td valign="top"><!--.......................LEFT NAVIGATION..................-->
+<table width="100%" border="0" cellpadding="2" cellspacing="0">
+<tr>
+<td width="15%"><img src="images/profile16.gif" width="16" height="16" /></td>
+<td width="85%" class="txt01">Profile</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="viewprofile.aspx" class="link01" target="content">My Profile</a></td>
+
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td><a href="changepassword.aspx" class="link01" target="content">Change Password</a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="leave/report_attendance_dataewise.aspx" class="link01" target="content">Attendance</a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="leave/report_canteen_dataewise.aspx" class="link01" target="content">Canteen</a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="leave/admin/viewdutyrosterEmployee.aspx" class="link01" target="content">My Duty Roster</a></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td><a href="payroll/declaration.aspx" class="link01" target="content">Payroll Declaration</a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td>
+<a href="payroll/admin/reports/projectedtaxdetailview.aspx" class="link01" target="_blank">Projected Yearly Tax</a>
+</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="payroll/report_tax_variance_employee.aspx" class="link01" target="content">Monthly Tax Paid</a></td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td><a href="leave/holidaylist.aspx" class="link01" target="content">Holiday List</a></td>
+</tr>
+<%--<tr>
+<td>&nbsp;</td>
+<td><a href="#" class="link01">Change Photo</a></td>
+</tr>--%>
+<%--<tr>
+<td height="10" colspan="2"></td>
+</tr>
+<tr>
+<td><img src="images/action_login.gif" width="16" height="16" /></td>
+<td class="txt01">To Do Task </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="employee-to-do.htm" class="link01" target="content">To Do </a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="#" class="link01">Reminder</a></td>
+</tr>
+<tr>
+<td height="10" colspan="2"></td>
+</tr>
+<tr>
+<td><img src="images/calender-icon.jpg" width="16" height="16" /></td>
+<td class="txt01">Calender</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="#" class="link01">View Events </a></td>
+</tr>
+<tr>
+<td height="10" colspan="2"></td>
+</tr>
+<tr>
+<td><img src="images/message_inbox16.gif" width="16" height="16" /></td>
+<td class="txt01">Mail Box </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="#" class="link01">My Mail Box</a></td>
+</tr>
+<tr>
+<td height="10" colspan="2"></td>
+</tr>
+<tr>
+<td><img src="images/action_postcomment.gif" width="16" height="16" /></td>
+<td class="txt01">Contact List</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="my-contact-list.htm" class="link01" target="content">My Contact List </a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="my-contact-important.htm" class="link01" target="content">My Importent Contacts</a></td>
+</tr>
+<tr>
+<td height="10" colspan="2"></td>
+</tr>
+<tr>
+<td><img src="images/application.gif" width="16" height="16" /></td>
+<td class="txt01">My Diary </td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="my-diary.htm" class="link01">My Official Diary</a></td>
+</tr>
+
+<tr>
+<td height="10" colspan="2"></td>
+</tr>
+<tr>
+<td><img src="images/icon-suggest.gif" width="16" height="16" /></td>
+<td class="txt01">Suggestion List</td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="my-diary.htm" class="link01">Post Suggestion</a></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><a href="my-diary.htm" class="link01">View Suggestion</a></td>
+</tr>
+--%>
+
+
+</table>
+<!--.........................END LEFT NAVIGATION.......................--></td>
+</tr>
+<tr>
+<td valign="top">&nbsp;</td>
+</tr>
+</table>
+<!--......................END LEFT PART.................--></td>
+<td width="1%" valign="top"><img src="../images/5x5.gif" width="10" height="5" /></td>
+<td width="87%" valign="top" class="blue-brdr-new">
+
+<asp:ContentPlaceHolder ID="cplhld1" runat="server">
+
+
+</asp:ContentPlaceHolder>
+
+
+</td>
+</tr>
+</table>
+
+</td>
+</tr>
+</table>
+</div>
+     
+        
+     
+</form>
+</body>
+</html>

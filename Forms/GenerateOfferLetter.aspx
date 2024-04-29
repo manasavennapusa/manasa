@@ -1,0 +1,572 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="GenerateOfferLetter.aspx.cs" Inherits="Forms_GenerateOfferLetter" Culture="en-us" %>
+
+<%@ Register Assembly="AjaxControlToolkit, Version=1.0.11119.7969, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e"
+    Namespace="AjaxControlToolkit" TagPrefix="cc2" %>
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<%@ Register Src="~/Controls/Uploader.ascx" TagName="File_Uploader" TagPrefix="File_Uploader" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+
+    <meta charset="utf-8">
+    <title>SmartDrive Labs</title>
+    <%--   <script src="../js/html5-trunk.js" type="text/javascript"></script>--%>
+    <link href="../icomoon/style.css" rel="stylesheet" />
+    <style type="text/css">
+        .star {
+            color: red;
+        }
+    </style>
+    <!--[if lte IE 7]>
+    <script src="css/icomoon-font/lte-ie7.js"></script>
+    <![endif]-->
+
+    <link href="../css/main.css" rel="stylesheet" />
+    <script src="../js/jquery.min.js" type="text/javascript"></script>
+    <script src="../js/bootstrap.js" type="text/javascript"></script>
+    <link href="../css/blue1.css" rel="stylesheet" />
+    <!-- Custom Js -->
+    <script src="../js/wizard/bwizard.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/validatepassword.js"></script>
+    <script src="../admin/js/popup.js" type="text/javascript"></script>
+    <%--<script type="text/javascript">
+        $(document).ready(function () {
+            $("#wizard").bwizard();
+        });
+    </script>--%>
+    <script type="text/javascript" src="../js/JavaScriptValidations.js"></script>
+    <script type="text/javascript">
+        function DescriptionValidate()
+        {
+            var x = document.getElementById('txt_hr_1');
+            if (x == null)
+            {
+               
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        function MakeReadOnly(elmnt, e) {
+            e = e || window.event;
+            ch = e.which || e.keyCode;
+            if (ch == 13 || ch == 9) {
+                event.keyCode = 9;
+            }
+            else {
+                return false;
+            }
+
+        }
+    </script>
+
+</head>
+<body>
+    <form id="myForm" runat="server" class="form-horizontal no-margin">
+        <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
+        <div class="dashboard-wrapper" style="margin-left: 0px;">
+            <div class="main-container">
+                <div class="page-header">
+                    <div class="pull-left">
+                        <h2>HR Letters</h2>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="row-fluid">
+                    <div class="span12">
+                        <div class="widget">
+                            <div class="widget-header">
+                                <div class="title">
+                                    <span class="fs1" aria-hidden="true" data-icon="&#xe023;">Offer Letter Details</span>
+                                </div>
+                            </div>
+                            <div class="widget-body">
+                                <div id="wizard">
+                                    <div>
+                                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                            <tr style="height: 50px">
+                                                <td class="frm-lft-clr123" width="24%" style="border-bottom: 1px solid #e2e2e2">Candidate ID<span class="star"></span></td>
+                                                <td class="frm-rght-clr123" width="26%" style="border-bottom: 1px solid #e2e2e2">
+                                                    <asp:TextBox ID="txtcandidatename" runat="server" placeholder="Max. 50 Char.." CssClass="span10" MaxLength="200" onblur="capitalizeMe(this)"></asp:TextBox>
+                                                    <a href="JavaScript:newPopup1('PickCandidate.aspx?role=10&candidate=<%=txtcandidatename.Text.ToString() %>&candidate_Id=<%=txtcandidatename.Text.ToString() %>');" title="Pick Candidate"><i class="icon-user"></i></a>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="txtcandidatename"
+                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Select Candidate Name"
+                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ControlToValidate="txtcandidatename"
+                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Select Candidate Name"
+                                                        ValidationGroup="vn" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ControlToValidate="txtcandidatename"
+                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Select Candidate Name"
+                                                        ValidationGroup="v1" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                </td>
+                                                <td style="width: 54%; padding-left: 20px">
+                                                    <asp:Button ID="btngetcandidate" runat="server" align="right" CssClass="btn btn-primary" Text="Get Details" title="Get Candidate" OnClick="btngetcandidate_Click" ValidationGroup="vn" />
+                                                    <asp:TextBox ID="txt_candidateid" runat="server" Visible="false"></asp:TextBox>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <br />
+                                        <table style="width: 100%" border="0" cellpadding="0" cellspacing="0">
+                                            <tr>
+                                                <td colspan="2" width="100%">
+                                                    <table style="width: 100%;" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="50%" valign="top">
+
+
+                                                                <asp:UpdatePanel ID="kk" runat="server">
+                                                                    <ContentTemplate>
+                                                                        <asp:UpdateProgress ID="UpdateProgress3" runat="server" AssociatedUpdatePanelID="kk"
+                                                                            DisplayAfter="1">
+                                                                            <ProgressTemplate>
+                                                                                <%--<div class="modal-backdrop fade in">
+                                                                                    <table width="100%">
+                                                                                        <tr>
+                                                                                            <td align="center" valign="top">
+                                                                                                <img src="../img/loading.gif" />
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </div>--%>
+                                                                            </ProgressTemplate>
+                                                                        </asp:UpdateProgress>
+                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="">
+                                                                            <tr>
+                                                                                <td>
+                                                                                   
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">Offer Letter Number<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123 border-bottom" width="52%">
+                                                                                    <asp:TextBox ID="txt_offer_ltr_numbr" runat="server" CssClass="span10" Width="" Height="35px" MaxLength="1000" placeholder="Enter Number.." Style="border: 1px solid #ddd; font-size: 14px"></asp:TextBox>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txt_offer_ltr_numbr"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Enter Offer Letter Number"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">HR Number<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123 border-bottom" width="52%">
+                                                                                    <asp:TextBox ID="txt_hr_1" runat="server" CssClass="span5" Width="" Height="35px" MaxLength="5" placeholder="Max 5 Chars.." Style="border: 1px solid #ddd; font-size: 14px"></asp:TextBox>
+                                                                                       <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="txt_hr_1"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Enter HR First Box Number"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                    <asp:TextBox ID="txt_hr_2" runat="server" CssClass="span5" Width="" Height="35px" MaxLength="5" placeholder="Max 5 Chars.." Style="border: 1px solid #ddd; font-size: 14px"></asp:TextBox>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="txt_hr_2"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Enter HR Second Box Number"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                    <%--<asp:CustomValidator ID="CustomValidator1" runat="server" ValidationGroup="v" ControlToValidate="txt_hr_1" ValidateEmptyText="true" ClientValidationFunction="DescriptionValidate" ErrorMessage='<img src="../images/error1.gif" alt="" />' SetFocusOnError="true" ></asp:CustomValidator>--%>
+                                                                                </td>
+                                                                            </tr>
+                                                                             <tr>
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">Candidate Name<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123 border-bottom" width="52%">
+                                                                                    <asp:TextBox ID="TextBox1_name" runat="server" CssClass="span10" Width="" Height="35px" MaxLength="1000" placeholder="Enter Name.." Style="border: 1px solid #ddd; font-size: 14px"></asp:TextBox>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ControlToValidate="TextBox1_name"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Enter Candidate Name"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">Candidate Address<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123 border-bottom" width="52%">
+                                                                                    <asp:TextBox ID="tbaddress" runat="server" CssClass="span10" Width="" Height="35px" MaxLength="1000" placeholder="Max 1000 Chars.." Style="border: 1px solid #ddd; font-size: 14px" TextMode="MultiLine"></asp:TextBox>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ControlToValidate="tbaddress"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Enter Address"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr id="Tr5" style="height: 50px" runat="server">
+                                                                                <td class="frm-lft-clr123" width="48%">CTC<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123" width="52%">
+                                                                                    <asp:TextBox ID="tbctc" runat="server" CssClass="span10" MaxLength="50" placeholder="Max 50 Chars.." onkeypress="return IsNumeric(event);"></asp:TextBox>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ControlToValidate="tbctc"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Enter CTC"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr id="Tr6" style="height: 50px" runat="server" visible="true">
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">Join Date<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123" width="52%">
+                                                                                    <asp:TextBox ID="tbjoindt" runat="server" CssClass="span10" AutoPostBack="true" placeholder="dd-mmm-yyyy" onkeypress="return enterdate(event);" onkeydown="return enterdate(event);"></asp:TextBox>
+                                                                                    <asp:Image ID="Image4" runat="server" ImageUrl="~/img/clndr.gif" placeholder="Select Date" />
+                                                                                    <cc1:CalendarExtender Format="dd-MMM-yyyy" ID="CalendarExtender4" runat="server" PopupButtonID="Image4" TargetControlID="tbjoindt" Enabled="True"></cc1:CalendarExtender>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ControlToValidate="tbjoindt"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Select Join Date"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+
+                                                                                     <%--<asp:CompareValidator ID="cmpVal1" ControlToCompare="tbIssuedt" ControlToValidate="tbjoindt" Display="Dynamic" Type="Date" Operator="LessThan" ErrorMessage='<img src="../images/error1.gif" alt="" />' runat="server" ToolTip="Enter Valid Date" SetFocusOnError="True" ValidationGroup="v"></asp:CompareValidator>--%>
+                                                                                    <img src="../images/error1.gif" alt="" visible="false" id="imgerror" runat="server" title="Enter Valid Date" />
+
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr id="Tr1" style="height: 50px" runat="server" visible="true">
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">Issued By<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123 border-bottom" width="52%">
+                                                                                    <asp:TextBox ID="tbissuedby" runat="server" CssClass="span10" placeholder="Select Issued By" onkeydown=" return MakeReadOnly(this,event);" style="background-color:#eaeaea"></asp:TextBox>                                                                                
+                                                                                    <a href="JavaScript:newPopup1('pickIssuedBy.aspx?role=12&empcode=<%=tbissuedby.Text.ToString() %>');" title="Pick Issued By"><i class="icon-user"></i></a>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ControlToValidate="tbissuedby"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Select Issued By"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </ContentTemplate>
+                                                                </asp:UpdatePanel>
+                                                            </td>
+                                                            <td valign="top">
+                                                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                                                                    <ContentTemplate>
+                                                                        <table width="99%" border="0" align="right" cellpadding="0" cellspacing="0">
+                                                                            <tr id="Tr7" style="height: 50px" runat="server" visible="true">
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">Job Location<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123 border-bottom" width="52%">
+                                                                                    <asp:DropDownList ID="drpbranch" runat="server" CssClass="span10"></asp:DropDownList>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ControlToValidate="drpbranch" InitialValue="0"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="images/error1.gif" alt="" />' ToolTip="Select job Location"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr id="Tr9" style="height: 50px" runat="server" visible="true">
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">Department<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123 border-bottom" width="52%">
+                                                                                    <asp:DropDownList ID="drpdepartment" runat="server" CssClass="span10"></asp:DropDownList>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ControlToValidate="drpdepartment" InitialValue="0"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="images/error1.gif" alt="" />' ToolTip="Select Department"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr id="Tr8" style="height: 50px" runat="server" visible="true">
+
+                                                                                <td class="frm-lft-clr123" width="48%">Designation<span class="star"></span>
+                                                                                </td>
+                                                                                <td class="frm-rght-clr123" width="52%">
+                                                                                    <asp:DropDownList ID="drpdesignation" runat="server" CssClass="span10"></asp:DropDownList>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ControlToValidate="drpdesignation" InitialValue="0"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="images/error1.gif" alt="" />' ToolTip="Select Designation"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                </td>
+
+                                                                            </tr>
+                                                                            <tr id="Tr3" style="height: 50px" runat="server" visible="true">
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">Last Date To Join<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123" width="52%">
+                                                                                    <asp:TextBox ID="tblstdt" runat="server" CssClass="span10" AutoPostBack="true" placeholder="dd-mmm-yyyy" onkeypress="return enterdate(event);" onkeydown="return enterdate(event);"></asp:TextBox>                                                                                 
+                                                                                    <asp:Image ID="Image1" runat="server" ImageUrl="~/img/clndr.gif" placeholder="Select Date" />
+                                                                                    <cc1:CalendarExtender Format="dd-MMM-yyyy" ID="CalendarExtender1" runat="server" PopupButtonID="Image1" TargetControlID="tblstdt" Enabled="True"></cc1:CalendarExtender>
+                                                                                     <asp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ControlToValidate="tblstdt"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Select Last Date To Join"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                       <img src="../images/error1.gif" alt="" visible="false" id="img1" runat="server" title="Enter Valid Date" />
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr id="Tr4" style="height: 50px" runat="server" visible="true">
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">Issued Date<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123 border-bottom" width="52%">
+                                                                                    <asp:TextBox ID="tbIssuedt" runat="server" CssClass="span10" AutoPostBack="true" placeholder="dd-mmm-yyyy" onkeypress="return enterdate(event);" onkeydown="return enterdate(event);"></asp:TextBox>
+                                                                                    <asp:Image ID="Image2" runat="server" ImageUrl="~/img/clndr.gif" placeholder="Select Date" />
+                                                                                    <cc1:CalendarExtender Format="dd-MMM-yyyy" ID="CalendarExtender2" runat="server" PopupButtonID="Image2" TargetControlID="tbIssuedt" Enabled="True"></cc1:CalendarExtender>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ControlToValidate="tbIssuedt"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Select Issued Date"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr id="Tr2" style="height: 50px" runat="server" visible="true">
+                                                                                <td class="frm-lft-clr123 border-bottom" width="48%">Email Id<span class="star"></span></td>
+                                                                                <td class="frm-rght-clr123 border-bottom" width="52%">
+                                                                                    <asp:TextBox ID="tbemail" runat="server" CssClass="span10" AutoPostBack="true" placeholder="Select Email"></asp:TextBox>&#160;
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ControlToValidate="tbemail"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Enter Email Id"
+                                                                                        ValidationGroup="v" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
+                                                                                        ValidationGroup="v" ToolTip="Invalid Email Id" SetFocusOnError="True" Display="Dynamic"
+                                                                                        ControlToValidate="tbemail" ErrorMessage='<img src="../images/error1.gif" alt="" />'
+                                                                                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                                                                    <asp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ControlToValidate="tbemail"
+                                                                                        Display="Dynamic" ErrorMessage='<img src="../images/error1.gif" alt="" />' ToolTip="Enter Email Id"
+                                                                                        ValidationGroup="v1" Width="6px" SetFocusOnError="True"><img src="../images/error1.gif" alt="" /></asp:RequiredFieldValidator>
+                                                                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator13" runat="server"
+                                                                                        ValidationGroup="v1" ToolTip="Invalid Email Id" SetFocusOnError="True" Display="Dynamic"
+                                                                                        ControlToValidate="tbemail" ErrorMessage='<img src="../images/error1.gif" alt="" />'
+                                                                                        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </ContentTemplate>
+                                                                </asp:UpdatePanel>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td height="5" colspan="2"></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+
+                                            </tr>
+                                        </table>
+                                        <br />
+                                        <div class="form-actions no-margin" style="background-color: #eee">
+                                            <div>
+                                                <asp:Label ID="lbl_msg" runat="server" EnableViewState="False"></asp:Label>
+                                                <asp:Button ID="btngenerateletter" runat="server" CssClass="btn btn-primary pull-right" Text="Generate Letter" title="Generate" OnClick="btngenerateletter_Click" Style="margin-left: 10px" ValidationGroup="v" />
+                                                <asp:Button ID="btn_reset" runat="server" CssClass="btn btn-primary pull-right" Text="Reset" title="Clear" OnClick="btn_reset_Click" OnClientClick="return ValidateSubmitData();" Style="margin-left: 10px" />
+                                                <asp:Button ID="btnSend" runat="server" CssClass="btn btn-primary pull-right" Text="Send Mail" title="Send Mail" OnClick="btnSend_Click" Style="margin-left: 10px" ValidationGroup="v1" />
+                                                <%--<asp:Button ID="btnsubmit" runat="server" CssClass="btn btn-primary pull-right" Text="Submit" title="Save Data" Style="margin-left: 10px" Visible="false" />--%>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+          <script type="text/javascript">
+              function ValidateDate() {
+               
+                var joindate = document.getElementById('<%=tbjoindt.ClientID %>');
+                var issueddate = document.getElementById('<%=tbIssuedt.ClientID %>');
+                var lastdate = document.getElementById('<%=tblstdt.ClientID %>');
+
+                  if (joindate.value != '' && issueddate.value != '')
+                      if (joindate.value > issueddate.value) {
+                          joindate.focus();
+                        alert("Enter Valid DateTime");
+                        return false;
+                    }
+
+                return true;
+            }
+        </script>
+        <script type="text/javascript">
+            function ValidateCandidate() {
+                var CandidateName = document.getElementById('<%=txtcandidatename.ClientID %>');
+                var offeerletternumber = document.getElementById('<%=txt_offer_ltr_numbr.ClientID %>');
+                var hr1 = document.getElementById('<%=txt_hr_1.ClientID %>');
+                var hr2 = document.getElementById('<%=txt_hr_2.ClientID %>');
+                var ctc = document.getElementById('<%=tbctc.ClientID %>');
+                var joindate = document.getElementById('<%=tbjoindt.ClientID %>');
+                var issuedby = document.getElementById('<%=tbissuedby.ClientID %>');
+                var joblocation = document.getElementById('<%=drpbranch.ClientID %>');
+                var department = document.getElementById('<%=drpdepartment.ClientID %>');
+                var designation = document.getElementById('<%=drpdesignation.ClientID %>');
+                var lastdatetojoin = document.getElementById('<%=tblstdt.ClientID %>');
+                var issueddate = document.getElementById('<%=tbIssuedt.ClientID %>');
+                var email = document.getElementById('<%=tbemail.ClientID %>');
+
+                if ((IsEmpty(CandidateName))) {
+                    CandidateName.focus();
+                    alert("Please enter Candidate Name from Offer Letter Details Tab");
+                    return false;
+                }
+                if ((IsEmpty(offeerletternumber))) {
+                    offeerletternumber.focus();
+                    alert("Please Enter Offer Letter Number from Offer Letter Details Tab");
+                    return false;
+                }
+                if ((IsEmpty(hr1))) {
+                    hr1.focus();
+                    alert("Please HR First Box Number from Offer Letter Details Tab");
+                    return false;
+                }
+                if ((IsEmpty(hr2))) {
+                    hr2.focus();
+                    alert("Please HR Second Box Number from Offer Letter Details Tab");
+                    return false;
+                }
+                if ((IsEmpty(ctc))) {
+                    ctc.focus();
+                    alert("Please Enter CTC from Offer Letter Details Tab");
+                    return false;
+                }
+                if ((IsEmpty(joindate))) {
+                    joindate.focus();
+                    alert("Please Enter Join Date from Offer Letter Details Tab");
+                    return false;
+                }
+                if ((IsEmpty(issuedby))) {
+                    issuedby.focus();
+                    alert("Please Select Issued By from Offer Letter Details Tab");
+                    return false;
+                }
+                if (joblocation.value == 0) {
+                    joblocation.focus();
+                    alert("Please Enter Job Location from Offer Letter Details Tab");
+                    return false;
+                }
+                if (department.value == 0) {
+                    department.focus();
+                    alert("Please Select Department from Offer Letter Details Tab");
+                    return false;
+                }
+                if (designation == 0) {
+                    designation.focus();
+                    alert("Please Select Designation from Offer Letter Details Tab");
+                    return false;
+                }
+                if ((IsEmpty(lastdatetojoin))) {
+                    lastdatetojoin.focus();
+                    alert("Please Select Last Date To Join from Offer Letter Details Tab");
+                    return false;
+                }
+                if ((IsEmpty(issueddate))) {
+                    issueddate.focus();
+                    alert("Please Select Issued Date from Offer Letter Details Tab");
+                    return false;
+                }
+                if ((IsEmpty(email))) {
+                    email.focus();
+                    alert("Please Enter Email from Offer Letter Details Tab");
+                    return false;
+                }
+                function IsEmpty(aTextField) {
+                    if ((aTextField.value.length == 0) || (aTextField.value == null) || aTextField.value.charAt(0) == ' ') {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+
+            function ValidateCandidateName() {
+                var candidatename = document.getElementById('<%=txtcandidatename.ClientID %>');
+
+                if ((IsEmpty(candidatename))) {
+                    candidatename.focus();
+                    alert("Please Enter Candidate Name from Offer Letter Details Tab.");
+                    return false;
+                }
+                function IsEmpty(aTextField) {
+                    if ((aTextField.value.length == 0) || (aTextField.value == null) || aTextField.value.charAt(0) == ' ') {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+
+            function ValidateData() {
+                var candidatename = document.getElementById('<%=txtcandidatename.ClientID %>');
+                var address = document.getElementById('<%=tbaddress.ClientID %>');
+
+
+                if ((IsEmpty(candidatename))) {
+                    candidatename.focus();
+                    alert("Please Enter Candidate Name from Offer Letter Details Tab.");
+                    return false;
+                }
+
+
+
+                function IsEmpty(aTextField) {
+                    if ((aTextField.value.length == 0) || (aTextField.value == null) || aTextField.value.charAt(0) == ' ') {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+            function ValidateEmail() {
+                var mail = document.getElementById('<%=tbemail.ClientID %>');
+                if ((IsEmpty(mail))) {
+                    mail.focus();
+                    alert("Please Enter Email");
+                    return false;
+                }
+
+                function IsEmpty(aTextField) {
+                    if ((aTextField.value.length == 0) || (aTextField.value == null) || aTextField.value.charAt(0) == ' ') {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            function IsNumeric(eventObj) {
+
+                var keycode;
+
+                if (eventObj.keyCode) //For IE
+                    keycode = eventObj.keyCode;
+                else if (eventObj.Which)
+                    keycode = eventObj.Which;  // For FireFox
+                else
+                    keycode = eventObj.charCode; // Other Browser
+
+                if (keycode != 8) //if the key is the backspace key
+                {
+                    if (keycode < 48 || keycode > 57) //if not a number
+                        return false; // disable key press
+                    else
+                        return true; // enable key press
+                }
+            }
+
+            function isAlpha(keyCode) {
+                return ((keyCode >= 65 && keyCode <= 90) || keyCode == 8 || keyCode == 32 || keyCode == 190 || keyCode == 9)
+            }
+
+            function isAddress(keyCode) {
+                return ((keyCode >= 48 && keyCode <= 57) || (keyCode >= 65 && keyCode <= 90) || keyCode == 8 || keyCode == 32 || keyCode == 190 || keyCode == 9 || keyCode == 13 || keyCode == 51 || keyCode == 50)
+            }
+
+            function validateEmail(obj) {
+                var x = obj.value;
+                if (x != '') {
+                    var atpos = x.indexOf("@");
+                    var dotpos = x.lastIndexOf(".");
+                    if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= x.length) {
+                        obj.focus();
+                        alert("Not a valid e-mail address");
+                        return false;
+                    }
+                }
+            }
+
+            function capitalizeMe(obj) {
+                val = obj.value;
+                newVal = '';
+                val = val.split(' ');
+                for (var c = 0; c < val.length; c++) {
+                    newVal += val[c].substring(0, 1).toUpperCase() + val[c].substring(1, val[c].length).toLowerCase() + ' ';
+                }
+                obj.value = newVal.trim();
+            }
+
+        </script>
+        <script type="text/javascript" language="javascript">
+            function fnValidatePAN(Obj) {
+
+                if (Obj == null) Obj = window.event.srcElement;
+                if (Obj.value != "") {
+                    ObjVal = Obj.value;
+                    var panPat = /^([a-zA-Z]{5})(\d{4})([a-zA-Z]{1})$/;
+                    var code = /([C,P,H,F,A,T,B,L,J,G])/;
+                    var code_chk = ObjVal.substring(3, 4);
+                    if (ObjVal.search(panPat) == -1) {
+                        alert("Invalid Pan No");
+                        Obj.value = "";
+                        Obj.focus();
+                        return false;
+                    }
+                    if (code.test(code_chk) == false) {
+                        alert("Invaild PAN Card No.");
+                        Obj.value = "";
+                        return false;
+                    }
+                }
+            }
+        </script>
+    </form>
+</body>
+</html>

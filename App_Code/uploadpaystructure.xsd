@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="uploadpaystructure" targetNamespace="http://tempuri.org/uploadpaystructure.xsd" xmlns:mstns="http://tempuri.org/uploadpaystructure.xsd" xmlns="http://tempuri.org/uploadpaystructure.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="uploadpaystructure" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_DataSetName="uploadpaystructure" msprop:Generator_UserDSName="uploadpaystructure">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="uploadpaystructure" msprop:Generator_TableClassName="uploadpaystructureDataTable" msprop:Generator_TableVarName="tableuploadpaystructure" msprop:Generator_TablePropName="_uploadpaystructure" msprop:Generator_RowDeletingName="uploadpaystructureRowDeleting" msprop:Generator_RowChangingName="uploadpaystructureRowChanging" msprop:Generator_RowEvHandlerName="uploadpaystructureRowChangeEventHandler" msprop:Generator_RowDeletedName="uploadpaystructureRowDeleted" msprop:Generator_UserTableName="uploadpaystructure" msprop:Generator_RowChangedName="uploadpaystructureRowChanged" msprop:Generator_RowEvArgName="uploadpaystructureRowChangeEvent" msprop:Generator_RowClassName="uploadpaystructureRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Empcode" msprop:Generator_ColumnVarNameInTable="columnEmpcode" msprop:Generator_ColumnPropNameInRow="Empcode" msprop:Generator_ColumnPropNameInTable="EmpcodeColumn" msprop:Generator_UserColumnName="Empcode" type="xs:string" minOccurs="0" />
+              <xs:element name="Payhead_Id" msprop:Generator_ColumnVarNameInTable="columnPayhead_Id" msprop:Generator_ColumnPropNameInRow="Payhead_Id" msprop:Generator_ColumnPropNameInTable="Payhead_IdColumn" msprop:Generator_UserColumnName="Payhead_Id" type="xs:string" minOccurs="0" />
+              <xs:element name="Calculation_Type" msprop:Generator_ColumnVarNameInTable="columnCalculation_Type" msprop:Generator_ColumnPropNameInRow="Calculation_Type" msprop:Generator_ColumnPropNameInTable="Calculation_TypeColumn" msprop:Generator_UserColumnName="Calculation_Type" type="xs:string" minOccurs="0" />
+              <xs:element name="Value_Base" msprop:Generator_ColumnVarNameInTable="columnValue_Base" msprop:Generator_ColumnPropNameInRow="Value_Base" msprop:Generator_ColumnPropNameInTable="Value_BaseColumn" msprop:Generator_UserColumnName="Value_Base" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:string" minOccurs="0" />
+              <xs:element name="empcode" msprop:Generator_ColumnVarNameInTable="columnempcode" msprop:Generator_ColumnPropNameInRow="empcode" msprop:Generator_ColumnPropNameInTable="empcodeColumn" msprop:Generator_UserColumnName="empcode" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
