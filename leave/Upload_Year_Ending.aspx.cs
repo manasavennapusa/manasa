@@ -251,7 +251,7 @@ public partial class leave_Upload_Year_Ending : System.Web.UI.Page
         {
 
             Output.Log("During validation: " + ex.Message + ".    " + DateTime.Now);
-            Output.Show("Upload Leave balance some problem is their. Please contact system admin. For error details please go through the log file.");
+            //Output.Show("Upload Leave balance some problem is their. Please contact system admin. For error details please go through the log file.");
         }
         finally
         {

@@ -96,7 +96,7 @@ public partial class leave_applyleave : System.Web.UI.Page
     {
         grdpaper.DataSource = null;
         grdpaper.DataBind();
-       // rdosplit.Checked = false;
+        // rdosplit.Checked = false;
         Div7.Visible = false;
         var activity = new DataActivity();
         try
@@ -170,7 +170,7 @@ public partial class leave_applyleave : System.Web.UI.Page
     #region Calculation of No of Days click Event
     protected void btn_calc_Click(object sender, EventArgs e)
     {
-        
+
         if (Page.IsValid)
         {
             if (divhalf.Visible == true)
@@ -189,9 +189,9 @@ public partial class leave_applyleave : System.Web.UI.Page
             {
 
                 validateapplyleave();
-               
+
             }
-          
+
         }
     }
     #endregion
@@ -721,24 +721,24 @@ public partial class leave_applyleave : System.Web.UI.Page
         try
         {
 
-              if (dd_typeleave.SelectedValue == "1" || dd_typeleave.SelectedValue == "2")
-              {
-                  SqlParameter[] sqlparm1 = new SqlParameter[1];
-                  Output.AssignParameter(sqlparm1, 0, "@empcode", "String", 50, Session["empcode"].ToString());
+            if (dd_typeleave.SelectedValue == "1" || dd_typeleave.SelectedValue == "2")
+            {
+                SqlParameter[] sqlparm1 = new SqlParameter[1];
+                Output.AssignParameter(sqlparm1, 0, "@empcode", "String", 50, Session["empcode"].ToString());
 
-                  ds2 = SQLServer.ExecuteDataset(connection, CommandType.StoredProcedure, "[sp_leave_entitledcompoff]", sqlparm1);
-                  if (ds2.Tables[0].Rows.Count > 0)
-                  {
+                ds2 = SQLServer.ExecuteDataset(connection, CommandType.StoredProcedure, "[sp_leave_entitledcompoff]", sqlparm1);
+                if (ds2.Tables[0].Rows.Count > 0)
+                {
 
-                      if (Convert.ToDecimal(ds2.Tables[0].Rows[0]["avalibledays"].ToString())>0)
-                      {
-                          Output.Show("Please Use Comp-off Before Using EL & CL/SL");
-                    
-                          return;
-                      }
-                  }
-              }
-            
+                    if (Convert.ToDecimal(ds2.Tables[0].Rows[0]["avalibledays"].ToString()) > 0)
+                    {
+                        Output.Show("Please Use Comp-off Before Using EL & CL/SL");
+
+                        return;
+                    }
+                }
+            }
+
             if (upload_attach.Enabled == true)
             {
                 if (upload_attach.HasFile)
@@ -800,7 +800,7 @@ public partial class leave_applyleave : System.Web.UI.Page
         finally
         {
             activity.CloseConnection();
-           // Output.Show("Leave application applied successfully.");
+            // Output.Show("Leave application applied successfully.");
         }
     }
     #endregion
@@ -1129,18 +1129,18 @@ public partial class leave_applyleave : System.Web.UI.Page
 
         for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
         {
-           
+
             if (ds.Tables[0].Rows[i]["official_email_id"].ToString().Trim() != "")
             {
 
-                sendmail_Template(ds.Tables[0].Rows[i]["official_email_id"].ToString().Trim(), ds.Tables[0].Rows[i]["a_name"].ToString().Trim(), lbl_emp_name.Text.Trim(), _userCode.Trim(),fromdt,todt);
+                sendmail_Template(ds.Tables[0].Rows[i]["official_email_id"].ToString().Trim(), ds.Tables[0].Rows[i]["a_name"].ToString().Trim(), lbl_emp_name.Text.Trim(), _userCode.Trim(), fromdt, todt);
             }
         }
 
 
     }
 
-    public bool sendmail_Template(string recievermailid, string approver, string employee, string empcode,string fromdt,string todt)
+    public bool sendmail_Template(string recievermailid, string approver, string employee, string empcode, string fromdt, string todt)
     {
 
         try
@@ -1148,10 +1148,10 @@ public partial class leave_applyleave : System.Web.UI.Page
 
 
             string senderId = ConfigurationManager.AppSettings["fromEmail"];
-            string senderPassword = ConfigurationManager.AppSettings["pwd"];      
-  
+            string senderPassword = ConfigurationManager.AppSettings["pwd"];
 
-            string Template = EmailTemplate(approver, employee, empcode, fromdt,todt);
+
+            string Template = EmailTemplate(approver, employee, empcode, fromdt, todt);
             bool IsAttachment = false;
             string FileName = string.Empty;
             System.Net.Mail.Attachment attachment = null;
@@ -1200,7 +1200,7 @@ public partial class leave_applyleave : System.Web.UI.Page
             return false;
         }
     }
-    public string EmailTemplate(string approver, string employee, string empcode,string fromdt,string todt)
+    public string EmailTemplate(string approver, string employee, string empcode, string fromdt, string todt)
     {
         string leave;
         if (dd_typeleave.SelectedValue == "1")
@@ -1308,18 +1308,18 @@ public partial class leave_applyleave : System.Web.UI.Page
                                                 "<div style='overflow: hidden;'>" +
                                                     "<font size='-1'>" +
                                                         "<div id='leaveid'>" +
-            //"<table width='100%'>" +
-            //    "<tbody>" +
+                                                            //"<table width='100%'>" +
+                                                            //    "<tbody>" +
 
                                                             //        "<tr>" +
-            //            "<td style='border-bottom: 1px solid #ccc; font: 12px arial'>" +
-            //                "<div style='font: bold 14px arial; color: #0099ff; margin: 0; padding: 0'><span>Holiday Work Application</span></div>" +
-            //            "</td>" +
-            //            "<td style='font: bold 14px arial; color: #0099ff; border-bottom: 1px solid #ccc'>" +
-            //        "</tr>" +
-            //    "</tbody>" +
-            //"</table>" +
-            //"<br>" +
+                                                            //            "<td style='border-bottom: 1px solid #ccc; font: 12px arial'>" +
+                                                            //                "<div style='font: bold 14px arial; color: #0099ff; margin: 0; padding: 0'><span>Holiday Work Application</span></div>" +
+                                                            //            "</td>" +
+                                                            //            "<td style='font: bold 14px arial; color: #0099ff; border-bottom: 1px solid #ccc'>" +
+                                                            //        "</tr>" +
+                                                            //    "</tbody>" +
+                                                            //"</table>" +
+                                                            //"<br>" +
                                                             "<p><b>Dear " + appr + @",</b></p>" +
                                                             "<p style='text-align: justify; color: #000000; text-align: justify'> " + "You have a Leave Application(" + leave + ") from  " + emp + " - " + empcod + " dated from " + Convert.ToDateTime(fromdt).ToString("dd-MMM-yyyy") + " - " + Convert.ToDateTime(todt).ToString("dd-MMM-yyyy") + " for Approval / Reject.</p>" +
 
@@ -1340,8 +1340,8 @@ public partial class leave_applyleave : System.Web.UI.Page
                                                                             "<br>" +
                                                                             "<b>This is a system generated mail. Please do not reply to this email ID. If you have a query or need any clarification you may contact HR." +
                                                                             "<br>" +
-                                                                                //"(1) Call our 24-hour Customer Care or<br>" +
-                                                                                //"(2) Email Us <a href='" + ConfigurationManager.AppSettings[""] + @"' target='_blank'>" + ConfigurationManager.AppSettings[""] + @"</a> </b>" +
+                                                                            //"(1) Call our 24-hour Customer Care or<br>" +
+                                                                            //"(2) Email Us <a href='" + ConfigurationManager.AppSettings[""] + @"' target='_blank'>" + ConfigurationManager.AppSettings[""] + @"</a> </b>" +
                                                                             "<br>" +
                                                                             "<hr>" +
                                                                             "<br>" +
@@ -1413,14 +1413,14 @@ public partial class leave_applyleave : System.Web.UI.Page
     {
         grdpaper.DataSource = null;
         grdpaper.DataBind();
-       // rdosplit.Checked = false;
+        // rdosplit.Checked = false;
         Div7.Visible = false;
     }
     protected void txt_edate_TextChanged(object sender, EventArgs e)
     {
         grdpaper.DataSource = null;
         grdpaper.DataBind();
-      //  rdosplit.Checked = false;
+        //  rdosplit.Checked = false;
         Div7.Visible = false;
     }
 }

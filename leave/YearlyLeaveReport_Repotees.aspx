@@ -73,7 +73,7 @@
                                                 CssClass="span4"
                                                 >
                                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                <asp:ListItem Value="3" Text="Escalon Policy"></asp:ListItem>
+                                                <asp:ListItem Value="3" Text="SDL GLOBE POLICY"></asp:ListItem>
                                             </asp:DropDownList>
 
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator2"
@@ -95,11 +95,11 @@
                                                 CssClass="span4"
                                                 >
                                                 <asp:ListItem Value="0" Text="--Select--"></asp:ListItem>
-                                                <asp:ListItem Value="1" Text="Leaves"></asp:ListItem>
+                                                <asp:ListItem Value="1" Text="Casual Leave (CL)"></asp:ListItem>
                                              <%--   <asp:ListItem Value="2" Text="Casual & SickLeave"></asp:ListItem>--%>
-                                                <asp:ListItem Value="3" Text="Probationary Leave"></asp:ListItem>
-                                                <asp:ListItem Value="4" Text="Maternity Leave"></asp:ListItem>
-                                                <asp:ListItem Value="5" Text="Paternity Leave"></asp:ListItem>
+                                                <asp:ListItem Value="3" Text="Sick Leave"></asp:ListItem>
+                                                <asp:ListItem Value="4" Text="Loss of pay (LOP)"></asp:ListItem>
+                                                <%--<asp:ListItem Value="5" Text="Loss of pay (LOP)"></asp:ListItem>--%>
                                                 <asp:ListItem Value="10" Text="All"></asp:ListItem>
                                             </asp:DropDownList>
 

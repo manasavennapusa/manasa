@@ -165,6 +165,23 @@ public partial class leave_processleavemonthly : System.Web.UI.Page
     }
     #endregion
 
+    //protected void bind_year()
+    //{
+    //    ddl_Cal.Items.Insert(0, new ListItem("Select Year", "0"));
+
+    //    int fromYear = Convert.ToInt32(ConfigurationManager.AppSettings["FromYear"]);
+    //    int toYear = Convert.ToInt32(ConfigurationManager.AppSettings["ToYear"]);
+
+    //    for (int i = fromYear; i <= toYear; i++)
+    //    {
+    //        ListItem item = new ListItem();
+    //        item.Text = new DateTime(i, 1, 1).ToString("yyyy");
+    //        item.Value = i.ToString();
+    //        ddl_Cal.Items.Add(new ListItem(Convert.ToString(item.Text), Convert.ToString(item.Value)));
+    //    }
+    //    DateTime a = new DateTime(System.DateTime.Now.Year, 1, 1);
+    //    ddl_Cal.SelectedValue = a.Year.ToString();
+    //}
     protected void bind_year()
     {
         ddl_Cal.Items.Insert(0, new ListItem("Select Year", "0"));
@@ -172,16 +189,22 @@ public partial class leave_processleavemonthly : System.Web.UI.Page
         int fromYear = Convert.ToInt32(ConfigurationManager.AppSettings["FromYear"]);
         int toYear = Convert.ToInt32(ConfigurationManager.AppSettings["ToYear"]);
 
+        // Validate fromYear and toYear to ensure they are within the valid range
+        fromYear = Math.Max(fromYear, 1); // Ensuring fromYear is at least 1
+        toYear = Math.Min(toYear, 9999);  // Ensuring toYear is at most 9999
+
         for (int i = fromYear; i <= toYear; i++)
         {
             ListItem item = new ListItem();
-            item.Text = new DateTime(i, 1, 1).ToString("yyyy");
+            item.Text = i.ToString(); // Just use the year as text
             item.Value = i.ToString();
-            ddl_Cal.Items.Add(new ListItem(Convert.ToString(item.Text), Convert.ToString(item.Value)));
+            ddl_Cal.Items.Add(item); // Adding item directly
         }
-        DateTime a = new DateTime(System.DateTime.Now.Year, 1, 1);
-        ddl_Cal.SelectedValue = a.Year.ToString();
+
+        // Setting the selected value to the current year
+        ddl_Cal.SelectedValue = DateTime.Now.Year.ToString();
     }
+
     protected void bindcompoffentitled(int policyid)
     {
         try

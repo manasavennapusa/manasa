@@ -718,7 +718,7 @@ and ad.empcode='" + usercode.ToString().Trim() + "' and datepart(Month, ad.DATE)
 
     #region Log-In Button Click
 
-    protected void btn_loging_Click(object sender, EventArgs e)
+    protected void btn_loging_Click(object sender, EventArgs e)     ////////////////// Chat gpt Code 
     {
         DataSet ds = new DataSet();
         string gettime = "select dateadd(MI,-270,getdate())";
@@ -728,50 +728,117 @@ and ad.empcode='" + usercode.ToString().Trim() + "' and datepart(Month, ad.DATE)
         string sqlstr = @"select ar.app_hrd , rm.official_email_id,rm.emp_fname+' ' +rm.emp_m_name+' ' +rm.emp_l_name as HR_Name
        from tbl_employee_approvers ar left join tbl_intranet_employee_jobDetails rm on ar.app_hrd = rm.empcode where ar.empcode='" + usercode + "'";
         DataSet ds2 = SQLServer.ExecuteDataset(connection, CommandType.Text, sqlstr);
-        string Hremail = ds2.Tables[0].Rows[0]["official_email_id"].ToString();
-        string Hrname = ds2.Tables[0].Rows[0]["HR_Name"].ToString();
 
-        string sqlstr1 = @"select rm.empcode, rm.emp_fname+' ' +rm.emp_m_name+' ' +rm.emp_l_name as empname from 
-                            tbl_intranet_employee_jobDetails rm where rm.empcode='" + usercode + "'";
-        DataSet ds3 = SQLServer.ExecuteDataset(connection, CommandType.Text, sqlstr1);
+        if (ds2.Tables.Count > 0 && ds2.Tables[0].Rows.Count > 0)
+        {
+            string Hremail = ds2.Tables[0].Rows[0]["official_email_id"].ToString();
+            string Hrname = ds2.Tables[0].Rows[0]["HR_Name"].ToString();
 
-        string empname = ds3.Tables[0].Rows[0]["empname"].ToString();
-        string empcode = ds3.Tables[0].Rows[0]["empcode"].ToString();
-        if (Convert.ToDateTime(ds.Tables[0].Rows[0]["Column1"].ToString()) > Convert.ToDateTime("08:30:00"))
-        {
-            // mailtoHR(Hremail, Hrname, empname, empcode);
-            //Output.Show("U came late more then 30 minutes");
-        }
-        try
-        {
-            connection = activity.OpenConnection();
-            string employeecode = usercode.ToString();
-            employeecode = employeecode.Substring(3, employeecode.Length - 3);
-            string query = @"insert into tbl_attendance_log(company_id,ip,enrollno,date)
-values('" + companyid + "','192.168.1.192','" + employeecode + "',GETDATE())";
-            int i = DBTask.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["intranetConnectionString"].ConnectionString.ToString(), CommandType.Text, query);
+            string sqlstr1 = @"select rm.empcode, rm.emp_fname+' ' +rm.emp_m_name+' ' +rm.emp_l_name as empname from 
+                        tbl_intranet_employee_jobDetails rm where rm.empcode='" + usercode + "'";
+            DataSet ds3 = SQLServer.ExecuteDataset(connection, CommandType.Text, sqlstr1);
 
-            string query_1 = @"insert into tbl_attendance_login_logout(companyid,empcode,exactdate,intime,outtime)
-values('" + companyid + "','" + usercode.ToString() + "',GETDATE(),GETDATE(),null)";
-            int i_1 = DBTask.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["intranetConnectionString"].ConnectionString.ToString(), CommandType.Text, query_1);
-        }
-        catch (Exception ex)
-        {
-            Output.Log("During validation: " + ex.Message + ".    " + DateTime.Now);
-            Output.Show("Record not saved. Please contact system admin. For error details please go through the log file.");
-        }
-        finally
-        {
-            activity.CloseConnection();
-            Output.Show("Login successfully!!");
-            BindIntoEmpPieChartData1();
-            BindIntoEmpPieChartData2();
-            BindIntoEmpPieChartData3();
-            bind_Intime();
-            btn_logout.Enabled = true;
-            bind_EmployeeMonthwise_Attendance();
+            if (ds3.Tables.Count > 0 && ds3.Tables[0].Rows.Count > 0)
+            {
+                string empname = ds3.Tables[0].Rows[0]["empname"].ToString();
+                string empcode = ds3.Tables[0].Rows[0]["empcode"].ToString();
+
+                if (Convert.ToDateTime(ds.Tables[0].Rows[0]["Column1"].ToString()) > Convert.ToDateTime("08:30:00"))
+                {
+                    // mailtoHR(Hremail, Hrname, empname, empcode);
+                    //Output.Show("U came late more then 30 minutes");
+                }
+
+                try
+                {
+                    connection = activity.OpenConnection();
+                    string employeecode = usercode.ToString();
+                    employeecode = employeecode.Substring(3, employeecode.Length - 3);
+                    string query = @"insert into tbl_attendance_log(company_id,ip,enrollno,date)
+                values('" + companyid + "','192.168.1.192','" + employeecode + "',GETDATE())";
+                    int i = DBTask.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["intranetConnectionString"].ConnectionString.ToString(), CommandType.Text, query);
+
+                    string query_1 = @"insert into tbl_attendance_login_logout(companyid,empcode,exactdate,intime,outtime)
+                values('" + companyid + "','" + usercode.ToString() + "',GETDATE(),GETDATE(),null)";
+                    int i_1 = DBTask.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["intranetConnectionString"].ConnectionString.ToString(), CommandType.Text, query_1);
+                }
+                catch (Exception ex)
+                {
+                    Output.Log("During validation: " + ex.Message + ".    " + DateTime.Now);
+                    Output.Show("Record not saved. Please contact system admin. For error details please go through the log file.");
+                }
+                finally
+                {
+                    activity.CloseConnection();
+                    Output.Show("Login successfully!!");
+                    BindIntoEmpPieChartData1();
+                    BindIntoEmpPieChartData2();
+                    BindIntoEmpPieChartData3();
+                    bind_Intime();
+                    btn_logout.Enabled = true;
+                    bind_EmployeeMonthwise_Attendance();
+                }
+            }
         }
     }
+
+
+
+
+    //    protected void btn_loging_Click(object sender, EventArgs e)      ////////////////////// original code 
+    //    {
+    //        DataSet ds = new DataSet();
+    //        string gettime = "select dateadd(MI,-270,getdate())";
+    //        ds = DBTask.ExecuteDataset(ConfigurationManager.ConnectionStrings["intranetConnectionString"].ConnectionString.ToString(), CommandType.Text, gettime);
+    //        SqlConnection connection = activity.OpenConnection();
+
+    //        string sqlstr = @"select ar.app_hrd , rm.official_email_id,rm.emp_fname+' ' +rm.emp_m_name+' ' +rm.emp_l_name as HR_Name
+    //       from tbl_employee_approvers ar left join tbl_intranet_employee_jobDetails rm on ar.app_hrd = rm.empcode where ar.empcode='" + usercode + "'";
+    //        DataSet ds2 = SQLServer.ExecuteDataset(connection, CommandType.Text, sqlstr);
+    //        string Hremail = ds2.Tables[0].Rows[0]["official_email_id"].ToString();
+    //        string Hrname = ds2.Tables[0].Rows[0]["HR_Name"].ToString();
+
+    //        string sqlstr1 = @"select rm.empcode, rm.emp_fname+' ' +rm.emp_m_name+' ' +rm.emp_l_name as empname from 
+    //                            tbl_intranet_employee_jobDetails rm where rm.empcode='" + usercode + "'";
+    //        DataSet ds3 = SQLServer.ExecuteDataset(connection, CommandType.Text, sqlstr1);
+
+    //        string empname = ds3.Tables[0].Rows[0]["empname"].ToString();
+    //        string empcode = ds3.Tables[0].Rows[0]["empcode"].ToString();
+    //        if (Convert.ToDateTime(ds.Tables[0].Rows[0]["Column1"].ToString()) > Convert.ToDateTime("08:30:00"))
+    //        {
+    //            // mailtoHR(Hremail, Hrname, empname, empcode);
+    //            //Output.Show("U came late more then 30 minutes");
+    //        }
+    //        try
+    //        {
+    //            connection = activity.OpenConnection();
+    //            string employeecode = usercode.ToString();
+    //            employeecode = employeecode.Substring(3, employeecode.Length - 3);
+    //            string query = @"insert into tbl_attendance_log(company_id,ip,enrollno,date)
+    //values('" + companyid + "','192.168.1.192','" + employeecode + "',GETDATE())";
+    //            int i = DBTask.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["intranetConnectionString"].ConnectionString.ToString(), CommandType.Text, query);
+
+    //            string query_1 = @"insert into tbl_attendance_login_logout(companyid,empcode,exactdate,intime,outtime)
+    //values('" + companyid + "','" + usercode.ToString() + "',GETDATE(),GETDATE(),null)";
+    //            int i_1 = DBTask.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["intranetConnectionString"].ConnectionString.ToString(), CommandType.Text, query_1);
+    //        }
+    //        catch (Exception ex)
+    //        {
+    //            Output.Log("During validation: " + ex.Message + ".    " + DateTime.Now);
+    //            Output.Show("Record not saved. Please contact system admin. For error details please go through the log file.");
+    //        }
+    //        finally
+    //        {
+    //            activity.CloseConnection();
+    //            Output.Show("Login successfully!!");
+    //            BindIntoEmpPieChartData1();
+    //            BindIntoEmpPieChartData2();
+    //            BindIntoEmpPieChartData3();
+    //            bind_Intime();
+    //            btn_logout.Enabled = true;
+    //            bind_EmployeeMonthwise_Attendance();
+    //        }
+    //    }
 
     #endregion
 

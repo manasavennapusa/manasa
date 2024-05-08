@@ -4,6 +4,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
 
 
 public partial class leave_createemployeeleaveprofile : System.Web.UI.Page
@@ -249,7 +250,8 @@ public partial class leave_createemployeeleaveprofile : System.Web.UI.Page
                     Output.AssignParameter(sqlparm2, 4, "@hr", "String", 10, false.ToString());
                     Output.AssignParameter(sqlparm2, 5, "@createdby", "String", 100, _userCode);
                     Output.AssignParameter(sqlparm2, 6, "@modifiedby", "String", 100, _userCode);
-                    Output.AssignParameter(sqlparm2, 7, "@createddate", "DateTime", 0, DateTime.Now.ToString());
+                    //Output.AssignParameter(sqlparm2, 7, "@createddate", "DateTime", 0, DateTime.Now.ToString());
+                    Output.AssignParameter(sqlparm2, 7, "@createddate", "DateTime", 0, DateTime.Today.ToString("yyyy-MM-dd HH:mm:ss"));
                     Output.AssignParameter(sqlparm2, 8, "@company_id", "Int", 0, _companyId.ToString());
                     flag += SQLServer.ExecuteNonQuery(connection, CommandType.Text, transaction, sqlstr, sqlparm2);
                     //DBTask.ExecuteNonQuery(ConfigurationManager.ConnectionStrings["intranetConnectionString"].ToString(), CommandType.Text, sqlstr, sqlparm);
