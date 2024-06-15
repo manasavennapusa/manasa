@@ -27,8 +27,16 @@ public partial class Admin_company_empmaster : System.Web.UI.Page
   
     protected void Page_Load(object sender, EventArgs e)
     {
-        lbl_msg.Text = "";
 
+        if (!IsPostBack)
+        {
+
+            // Check if lbl_msg is null before accessing it
+            if (Session["empname"] != null && Session["companyid"] != null)
+            {
+                // Your session handling logic here
+            }
+        }
         if (Session["empcode"] != null && Session["companyid"] != null)
         {
             _userCode = Session["empcode"].ToString();
@@ -5140,4 +5148,29 @@ public partial class Admin_company_empmaster : System.Web.UI.Page
     {
 
     }
+
+    protected void btncreate(object sender, EventArgs e)
+    {
+
+        string con = ConfigurationManager.ConnectionStrings["intranetConnectionString"].ConnectionString;
+
+        SqlConnection connection = new SqlConnection(con);
+        connection.Open();
+
+        SqlParameter[] sqlparam = new SqlParameter[1];
+        sqlparam[0] = new SqlParameter("@EmpName", SqlDbType.VarChar);
+        if (tbempname.Text == "")
+        {
+            sqlparam[0].Value = System.Data.SqlTypes.SqlDateTime.Null;
+        }
+        else
+        {
+            sqlparam[0].Value = tbempname.Text;
+        }
+
+        ds = SQLServer.ExecuteDataset(connection, CommandType.StoredProcedure, transaction, "sp_Insert_Employee_Details", sqlparam);
+
+        SmartHr.Common.Alert("Employee Details Saved successfully!!!.");
+    }
+   
 }
